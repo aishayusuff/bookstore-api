@@ -1,5 +1,5 @@
 package com.practice.book.service;
 
-public class bookService {
+public class BookService {
     
 }
