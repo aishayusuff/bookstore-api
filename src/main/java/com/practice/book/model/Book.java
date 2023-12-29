@@ -51,12 +51,13 @@ public class Book {
     }
 
     //Setter for modifying price state
-    protected void setPrice(double modifiedPrice) {
+    public void setPrice(double modifiedPrice) {
         this.price = modifiedPrice;
 
     }
 
-    protected void setQuantityOfStock(int modifiedQuantityOfStock) {
+     //Setter for modifying stock state
+    public void setQuantityOfStock(int modifiedQuantityOfStock) {
         this.quantityOfStock = modifiedQuantityOfStock; 
     }
     

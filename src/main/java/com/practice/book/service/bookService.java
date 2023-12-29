@@ -27,4 +27,21 @@ public class BookService {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Book with id: " + id + " Not found"));
     }
 
+    public Book createNewBook(Book newBook) {
+        return repository.save(newBook);
+    }
+
+    public Book updateBookPrice(Long id, double updatedPrice) {
+        Book bookToUpdate = getBookByID(id);
+
+        bookToUpdate.setPrice(updatedPrice);
+        return repository.save(bookToUpdate);
+    }
+
+    public Book updateBookStock(Long id, int updatedQuantityOfStock) {
+        Book bookToUpdate = getBookByID(id);
+        bookToUpdate.setQuantityOfStock(updatedQuantityOfStock);
+        return repository.save(bookToUpdate);
+    }
+
 }
