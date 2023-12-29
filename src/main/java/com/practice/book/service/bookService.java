@@ -14,7 +14,6 @@ import jakarta.persistence.EntityNotFoundException;
 public class BookService {
     private final BookRepository repository;
 
-    // @Autowired
     public BookService (BookRepository repository) {
         this.repository = repository;
     }

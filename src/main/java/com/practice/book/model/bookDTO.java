@@ -54,4 +54,13 @@ public class BookDTO {
     public void setQuantityOfStock(int newQuantityOfStock) {
         this.quantityOfStock = newQuantityOfStock;
     }
+
+    //Conversion methods TODO
+    public BookDTO fromEntity(Book book) {
+        return new BookDTO(id, title, author, price, quantityOfStock);
+    }
+
+    public Book toEntity(BookDTO bookDTO) {
+        return new Book();
+    }
 }
