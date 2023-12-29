@@ -1,6 +1,8 @@
 package com.practice.book.service;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,12 @@ public class BookService {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Book with id: " + id + " Not found"));
     }
 
+    public List<Book> getAllDiscountedBooks(double discountPercent) {
+        List<Book> allBooks = getAllBooks();
+        return allBooks.stream().map(book -> book.applyDiscount(discountPercent)).collect(Collectors.toList());
+
+    }
+
     public Book createNewBook(Book newBook) {
         return repository.save(newBook);
     }
@@ -43,5 +51,7 @@ public class BookService {
         bookToUpdate.setQuantityOfStock(updatedQuantityOfStock);
         return repository.save(bookToUpdate);
     }
+
+
 
 }
