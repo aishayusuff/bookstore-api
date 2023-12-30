@@ -55,12 +55,22 @@ public class BookDTO {
         this.quantityOfStock = newQuantityOfStock;
     }
 
-    //Conversion methods TODO
+    //Conversion methods
     public BookDTO fromEntity(Book book) {
-        return new BookDTO(id, title, author, price, quantityOfStock);
+        BookDTO bookDTO = new BookDTO(id, title, author, price, quantityOfStock);
+        bookDTO.setAuthor(book.getAuthor());
+        bookDTO.setTitle(book.getTitle());
+        bookDTO.setPrice(book.getPrice());
+        bookDTO.setQuantityOfStock(book.getQuantityOfStock());
+        return bookDTO;
     }
 
-    public Book toEntity(BookDTO bookDTO) {
-        return new Book();
+    public Book toEntity() {
+        Book book = new Book();
+        book.setPrice(this.price);
+        book.setTitle(this.title);
+        book.setAuthor(this.author);
+        book.setQuantityOfStock(this.quantityOfStock);
+        return book;
     }
 }

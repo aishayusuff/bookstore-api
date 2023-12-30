@@ -18,10 +18,11 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    // @PostMapping("path")
-    // public Book createsBook(@RequestBody BookDTO newBook) {
-    // //TODO: Create conversion method
-    // return newBook;
-    // }
+    @PostMapping("/create-books")
+    public Book createsBook(@RequestBody BookDTO newBook) {
+        Book book = newBook.toEntity();
+        Book createdBook = bookService.createNewBook(book);
+        return createdBook;
+    }
 
 }

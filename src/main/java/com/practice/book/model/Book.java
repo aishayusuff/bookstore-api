@@ -67,4 +67,12 @@ public class Book {
         return new Book(title, author, discountedPrice, quantityOfStock);
     }
 
+    public void setTitle(String modifiedTitle) {
+        this.title = modifiedTitle;
+    }
+
+    public void setAuthor(String modifiedAuthor) {
+        this.author = modifiedAuthor;
+    }
+
 }
