@@ -8,6 +8,10 @@ public class BookDTO {
     private double price;
     private int quantityOfStock;
 
+    public BookDTO() {
+
+    }
+
     public BookDTO(Long id, String title, String author, double price, int quantityOfStock) {
         this.id = id;
         this.title = title;
@@ -56,8 +60,8 @@ public class BookDTO {
     }
 
     //Conversion methods
-    public BookDTO fromEntity(Book book) {
-        BookDTO bookDTO = new BookDTO(id, title, author, price, quantityOfStock);
+    public static BookDTO fromEntity(Book book) {
+        BookDTO bookDTO = new BookDTO();
         bookDTO.setAuthor(book.getAuthor());
         bookDTO.setTitle(book.getTitle());
         bookDTO.setPrice(book.getPrice());
