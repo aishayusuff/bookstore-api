@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -28,6 +27,7 @@ public class BookController {
     }
 
     //To create books
+    //TODO: Remove bug when posting new book
     @PostMapping("/create-books")
     public ResponseEntity<BookDTO> createsBook(@RequestBody BookDTO newBook) {
         Book book = newBook.toEntity();

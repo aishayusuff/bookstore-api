@@ -2,7 +2,6 @@ package com.practice.book.model;
 
 public class BookDTO {
 
-    private Long id;
     private String title;
     private String author;
     private double price;
@@ -12,8 +11,7 @@ public class BookDTO {
 
     }
 
-    public BookDTO(Long id, String title, String author, double price, int quantityOfStock) {
-        this.id = id;
+    public BookDTO(String title, String author, double price, int quantityOfStock) {
         this.title = title;
         this.author = author;
         this.price = price;
@@ -22,9 +20,6 @@ public class BookDTO {
     }
 
     //Getters
-    public Long getID() {
-        return this.id;
-    }
 
     public String getTitle() {
         return this.title;
