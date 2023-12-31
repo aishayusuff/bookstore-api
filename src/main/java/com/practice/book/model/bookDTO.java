@@ -47,7 +47,7 @@ public class BookDTO {
     }
 
     public void setAuthor(String newAuthor) {
-        this.title = newAuthor;
+        this.author = newAuthor;
     }
 
     public void setQuantityOfStock(int newQuantityOfStock) {
@@ -66,9 +66,9 @@ public class BookDTO {
 
     public Book toEntity() {
         Book book = new Book();
-        book.setPrice(this.price);
         book.setTitle(this.title);
         book.setAuthor(this.author);
+        book.setPrice(this.price);
         book.setQuantityOfStock(this.quantityOfStock);
         return book;
     }

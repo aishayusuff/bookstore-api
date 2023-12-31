@@ -50,6 +50,14 @@ public class Book {
         return this.quantityOfStock;
     }
 
+    public void setTitle(String modifiedTitle) {
+        this.title = modifiedTitle;
+    }
+
+    public void setAuthor(String modifiedAuthor) {
+        this.author = modifiedAuthor;
+    }
+
     //Setter for modifying price state
     public void setPrice(double modifiedPrice) {
         this.price = modifiedPrice;
@@ -67,12 +75,6 @@ public class Book {
         return new Book(title, author, discountedPrice, quantityOfStock);
     }
 
-    public void setTitle(String modifiedTitle) {
-        this.title = modifiedTitle;
-    }
-
-    public void setAuthor(String modifiedAuthor) {
-        this.author = modifiedAuthor;
-    }
+ 
 
 }
