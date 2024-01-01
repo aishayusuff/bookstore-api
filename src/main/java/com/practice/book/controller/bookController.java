@@ -52,6 +52,7 @@ public class BookController {
         return ResponseEntity.ok(BookDTO.fromEntity(book));
     }
 
+    //TODO: Improve the comparision values by using boolean flags 
     //To update the price or quantity of stock of a book
     @PutMapping("/books/{id}")
     public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody BookDTO updatedBookDTO) {
