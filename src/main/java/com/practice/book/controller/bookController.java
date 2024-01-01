@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,7 +52,12 @@ public class BookController {
         return ResponseEntity.ok(BookDTO.fromEntity(book));
     }
 
-    //TODO:@PutMapping
+    //To update a book
+    @PutMapping("/books/{id}")
+    public ResponseEntity<BookDTO> updateBookPrice(@PathVariable Long id, @RequestBody int updatedBookPrice) {
+        Book upBook = bookService.updateBookPrice(id, updatedBookPrice);
+        return ResponseEntity.ok(BookDTO.fromEntity(upBook));
+    }
 
 
     //To delete a book
