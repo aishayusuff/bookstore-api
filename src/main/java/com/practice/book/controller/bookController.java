@@ -54,9 +54,11 @@ public class BookController {
 
     //To update a book
     @PutMapping("/books/{id}")
-    public ResponseEntity<BookDTO> updateBookPrice(@PathVariable Long id, @RequestBody int updatedBookPrice) {
-        Book upBook = bookService.updateBookPrice(id, updatedBookPrice);
-        return ResponseEntity.ok(BookDTO.fromEntity(upBook));
+    public ResponseEntity<BookDTO> updateBookPrice(@PathVariable Long id, @RequestBody BookDTO updatedBookDTO) {
+        Book updatedBook = updatedBookDTO.toEntity();
+        double updatedBookPrice = updatedBook.getPrice(); 
+        Book updatedBookEntity = bookService.updateBookPrice(id, updatedBookPrice);
+        return ResponseEntity.ok(BookDTO.fromEntity(updatedBookEntity));
     }
 
 
