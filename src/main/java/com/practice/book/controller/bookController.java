@@ -52,15 +52,24 @@ public class BookController {
         return ResponseEntity.ok(BookDTO.fromEntity(book));
     }
 
-    //To update a book
+    //To update the price or quantity of stock of a book
     @PutMapping("/books/{id}")
-    public ResponseEntity<BookDTO> updateBookPrice(@PathVariable Long id, @RequestBody BookDTO updatedBookDTO) {
+    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody BookDTO updatedBookDTO) {
         Book updatedBook = updatedBookDTO.toEntity();
-        double updatedBookPrice = updatedBook.getPrice(); 
-        Book updatedBookEntity = bookService.updateBookPrice(id, updatedBookPrice);
-        return ResponseEntity.ok(BookDTO.fromEntity(updatedBookEntity));
-    }
 
+        if (updatedBook.getPrice() != 0.0) {
+            double updatedBookPrice = updatedBook.getPrice(); 
+            Book updatedBookEntity = bookService.updateBookPrice(id, updatedBookPrice);
+            return ResponseEntity.ok(BookDTO.fromEntity(updatedBookEntity));
+        }
+        if (updatedBook.getQuantityOfStock() != -1) {
+            int updatedBookStock = updatedBook.getQuantityOfStock(); 
+            Book updatedBookEntity = bookService.updateBookPrice(id, updatedBookStock);
+            return ResponseEntity.ok(BookDTO.fromEntity(updatedBookEntity));
+        }
+ 
+        return ResponseEntity.badRequest().build();
+    }
 
     //To delete a book
     @DeleteMapping("/books/{id}")
