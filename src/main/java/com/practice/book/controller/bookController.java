@@ -3,6 +3,7 @@ package com.practice.book.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.practice.book.exception.BookNotFoundException;
 import com.practice.book.model.Book;
 import com.practice.book.model.BookDTO;
 import com.practice.book.service.BookService;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -48,8 +50,13 @@ public class BookController {
     //To get one book
     @GetMapping("/{id}")
     public ResponseEntity<BookDTO> getBookById(@PathVariable Long id) {
+       try {
         Book book = bookService.getBookByID(id);
         return ResponseEntity.ok(BookDTO.fromEntity(book));
+
+      } catch (BookNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+      }
     }
 
     //To update the price or quantity of stock of a book
