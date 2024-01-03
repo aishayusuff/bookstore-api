@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
-@RequestMapping("/api/v1/bookerly")
+@RequestMapping("/api/v1/bookerly/books")
 public class BookController {
     private final BookService bookService;
 
@@ -30,7 +30,7 @@ public class BookController {
     }
 
     //To create books
-    @PostMapping("/create-books")
+    @PostMapping()
     public ResponseEntity<BookDTO> createsBook(@RequestBody BookDTO newBook) {
         Book book = newBook.toEntity();
         Book createdBook = bookService.createNewBook(book);
@@ -38,7 +38,7 @@ public class BookController {
     }
 
     //To get all books
-    @GetMapping("/books")
+    @GetMapping()
     public ResponseEntity<List<BookDTO>> getAllBooks() {
         List<Book> allBooks = bookService.getAllBooks();
         List<BookDTO> allBookDTOs = allBooks.stream().map(book -> BookDTO.fromEntity(book)).collect(Collectors.toList());
@@ -46,14 +46,14 @@ public class BookController {
     }
     
     //To get one book
-    @GetMapping("/books/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<BookDTO> getBookById(@PathVariable Long id) {
         Book book = bookService.getBookByID(id);
         return ResponseEntity.ok(BookDTO.fromEntity(book));
     }
 
     //To update the price or quantity of stock of a book
-    @PutMapping("/books/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody BookDTO updatedBookDTO) {
         Book updatedBook = updatedBookDTO.toEntity();
         Book updatedBookEntity = null;
@@ -79,7 +79,7 @@ public class BookController {
     }
 
     //To delete a book
-    @DeleteMapping("/books/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteBookById(@PathVariable Long id) {
         bookService.deleteBookByID(id);
         return ResponseEntity.ok("Book has been deleted successfully!");
