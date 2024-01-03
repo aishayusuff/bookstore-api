@@ -66,6 +66,12 @@ public class BookController {
     //To update the price or quantity of stock of a book
     @PutMapping("/{id}")
     public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody BookDTO updatedBookDTO) {
+        try {
+            bookService.getBookByID(id);
+        } catch (BookNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
         Book updatedBook = updatedBookDTO.toEntity();
         Book updatedBookEntity = null;
         boolean isPriceUpdated = false;
