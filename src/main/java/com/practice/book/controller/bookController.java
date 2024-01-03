@@ -42,9 +42,13 @@ public class BookController {
     //To get all books
     @GetMapping()
     public ResponseEntity<List<BookDTO>> getAllBooks() {
-        List<Book> allBooks = bookService.getAllBooks();
-        List<BookDTO> allBookDTOs = allBooks.stream().map(book -> BookDTO.fromEntity(book)).collect(Collectors.toList());
-        return ResponseEntity.ok(allBookDTOs);
+            List<Book> allBooks = bookService.getAllBooks();
+            List<BookDTO> allBookDTOs = allBooks.stream().map(book -> BookDTO.fromEntity(book)).collect(Collectors.toList());
+
+            if (allBooks.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+            return ResponseEntity.ok(allBookDTOs);
     }
     
     //To get one book
@@ -54,7 +58,7 @@ public class BookController {
         Book book = bookService.getBookByID(id);
         return ResponseEntity.ok(BookDTO.fromEntity(book));
 
-      } catch (BookNotFoundException e) {
+      }catch (BookNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
       }
     }
